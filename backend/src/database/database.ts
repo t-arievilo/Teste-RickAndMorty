@@ -10,9 +10,9 @@ const db: DatabaseType = new Database(
 
 db.pragma("foreign_keys = ON");
 
-//cria a tabela de usuários e personagens, caso não existam.
+//cria a tabela de users e characters, caso não existam.
 db.exec(`
-  CREATE TABLE IF NOT EXISTS usuarios (
+  CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
@@ -21,7 +21,7 @@ db.exec(`
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
  
-  CREATE TABLE IF NOT EXISTS personagens (
+  CREATE TABLE IF NOT EXISTS characters (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     original_character_id INTEGER NOT NULL,
     name TEXT NOT NULL,
