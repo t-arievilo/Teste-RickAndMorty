@@ -42,3 +42,18 @@ export interface AuthUser {
   name: string;
   email: string;
 }
+
+//cria pernonagem salvo no banco
+export interface CreateCharacterDto {
+  original_character_id: number;
+  name: string;
+  species: string;
+  gender: string;
+  origin: string;
+  location: string;
+  image: string;
+  status: string;
+}
+
+//edita pernagem salvo no banco
+export type UpdateCharacterDto = Partial<CreateCharacterDto>;
