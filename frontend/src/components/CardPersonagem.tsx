@@ -28,6 +28,7 @@ export default function CardPersonagem({
       <h3>{personagem.name}</h3>
       <p>
         {personagem.status} — {personagem.species}
+        {personagem.gender} —
       </p>
       {onDeletar && (
         <button
