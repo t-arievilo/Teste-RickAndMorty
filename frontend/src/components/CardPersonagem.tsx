@@ -1,16 +1,25 @@
 import { useNavigate } from "react-router-dom";
-import { type RickAndMortyCharacter } from "../types";
+import { type RickAndMortyCharacter, type SavedCharacter } from "../types";
 
 interface Props {
-  personagem: RickAndMortyCharacter;
+  personagem: RickAndMortyCharacter | SavedCharacter;
   origem: "api" | "local";
+  onDeletar?: (id: number) => void;
 }
 
-export default function CardPersonagem({ personagem }: Props) {
+export default function CardPersonagem({
+  personagem,
+  origem,
+  onDeletar,
+}: Props) {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate(`/personagens/${(personagem as RickAndMortyCharacter).id}`);
+    if (origem === "api") {
+      navigate(`/personagens/${(personagem as RickAndMortyCharacter).id}`);
+    } else {
+      navigate(`/meus-personagens/${(personagem as SavedCharacter).id}`);
+    }
   }
 
   return (
@@ -20,7 +29,16 @@ export default function CardPersonagem({ personagem }: Props) {
       <p>
         {personagem.status} — {personagem.species}
       </p>
-      <button>Excluir</button>
+      {onDeletar && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onDeletar((personagem as SavedCharacter).id);
+          }}
+        >
+          Excluir
+        </button>
+      )}
     </div>
   );
 }
