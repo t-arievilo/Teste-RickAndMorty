@@ -281,7 +281,7 @@ export default function DetalhePersonagem() {
               className="btn btn-verde"
               style={{ width: "100%", marginBottom: 8 }}
             >
-              {salvando ? "Salvando..." : "💾 Salvar Personagem"}
+              {salvando ? "Salvando..." : "Salvar Personagem"}
             </button>
           )}
 

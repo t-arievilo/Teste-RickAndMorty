@@ -11,7 +11,7 @@ export default function Personagens() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // pagina e busca ficam na URL: /personagens?page=35&name=rick
-  // assim quando o usuario clica em voltar, o browser restaura a URL e o estado volta certinho
+  // assim quando o usuario clica em voltar, o browser restaura a URL e o estado volta
   const pagina = Number(searchParams.get("page")) || 1;
   const busca = searchParams.get("name") || "";
 
@@ -153,7 +153,6 @@ export default function Personagens() {
         </div>
       ) : erro === "nao_encontrado" ? (
         <div className="vazio">
-          <p className="vazio-icone">🌀</p>
           <p className="vazio-texto">Nenhum personagem encontrado</p>
           <p
             style={{ color: "var(--texto3)", fontSize: "0.9rem", marginTop: 4 }}
