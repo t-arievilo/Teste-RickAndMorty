@@ -17,6 +17,7 @@
   --verde-before-hover: #2dbe40;
   --verde-dim: rgba(43, 238, 9, 0.8);
   --azul: #00c5e3;
+  --azul-claro-texto: #ade8f1;
   --azul-dim: rgba(0, 197, 227, 0.5);
   --roxo: #7b2fff;
   --amarelo: #f5c518;
@@ -295,7 +296,7 @@ input::placeholder {
 }
 .btn-azul {
   background: var(--azul-dim);
-  color: var(--azul);
+  color: var(--azul-claro-texto);
   border: 1px solid rgba(0, 197, 227, 0.25);
 }
 .btn-azul:hover:not(:disabled) {
