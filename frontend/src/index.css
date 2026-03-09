@@ -12,6 +12,7 @@
 
 :root {
   --verde: #0a4201;
+  --verde-claro-texto: #0cdb28;
   --verde-escuro: #249c03;
   --verde-before-hover: #2dbe40;
   --verde-dim: rgba(43, 238, 9, 0.8);
