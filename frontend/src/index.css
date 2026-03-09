@@ -13,6 +13,7 @@
 :root {
   --verde: #0a4201;
   --verde-escuro: #249c03;
+  --verde-before-hover: #2dbe40;
   --verde-dim: rgba(43, 238, 9, 0.8);
   --azul: #00c5e3;
   --azul-dim: rgba(0, 197, 227, 0.5);
@@ -20,6 +21,7 @@
   --amarelo: #f5c518;
   --amarelo-dim: rgba(245, 197, 24, 0.5);
   --vermelho: #410202;
+  --vermelho-text-button: #f3bdbd;
   --vermelho-dim: rgba(248, 9, 9, 0.5);
   --bg: #090d1a;
   --bg-card: #0e1526;
@@ -210,12 +212,14 @@ input::placeholder {
   letter-spacing: 0.05em;
   line-height: 1;
   margin-bottom: 6px;
+  text-align: start;
 }
 
 .subtitulo-pagina {
   color: var(--texto2);
   font-size: 0.95rem;
   margin-bottom: 36px;
+  text-align: start;
 }
 
 /* grid de cards */
@@ -264,7 +268,7 @@ input::placeholder {
   cursor: not-allowed;
 }
 .btn-verde {
-  background: var(--verde);
+  background: var(--verde-before-hover);
   color: #000;
 }
 .btn-verde:hover:not(:disabled) {
@@ -282,7 +286,7 @@ input::placeholder {
 }
 .btn-vermelho {
   background: var(--vermelho-dim);
-  color: var(--vermelho);
+  color: var(--vermelho-text-button);
   border: 1px solid rgba(255, 68, 68, 0.25);
 }
 .btn-vermelho:hover:not(:disabled) {

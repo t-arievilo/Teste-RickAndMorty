@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { getPersonagens } from "../api/rickAndMortyApi";
 import { type RickAndMortyCharacter } from "../types";
 import CardPersonagem from "../components/CardPersonagem";
+import RickAndMortyRateLimit from "../../public/assets/RickAndMortyRateLimit.png";
 
 type ErroTipo = "nao_encontrado" | "rate_limit" | null;
 
@@ -113,7 +114,16 @@ export default function Personagens() {
         </div>
       ) : erro === "rate_limit" ? (
         <div className="vazio" style={{ borderColor: "rgba(245,197,24,0.3)" }}>
-          <p className="vazio-icone">⏳</p>
+          <img
+            src={RickAndMortyRateLimit}
+            alt="Rick e Morty"
+            style={{
+              width: "120px",
+              height: "auto",
+              marginBottom: "16px",
+              filter: "drop-shadow(0 0 10px rgba(0, 197, 227, 0.3))",
+            }}
+          />
           <p className="vazio-texto" style={{ color: "var(--amarelo)" }}>
             Muitas requisições em pouco tempo
           </p>
