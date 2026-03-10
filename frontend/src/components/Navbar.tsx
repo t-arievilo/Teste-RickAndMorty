@@ -99,13 +99,42 @@ export default function Navbar() {
                 fontFamily: "var(--font-rick)",
                 fontSize: "2rem",
                 letterSpacing: "0.06em",
-                background: "linear-gradient(90deg, var(--verde), var(--azul))",
+                background: "var(--azul)",
+                WebkitTextStroke: "0.4px var(--verde-claro-texto)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 whiteSpace: "nowrap",
               }}
             >
-              Rick and Morty
+              Rick
+            </span>
+            <span
+              style={{
+                fontFamily: "var(--font-rick)",
+                fontSize: "1.1rem",
+                letterSpacing: "0.06em",
+                background: "var(--azul)",
+                WebkitTextStroke: "0.4px var(--verde-claro-texto)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                whiteSpace: "nowrap",
+              }}
+            >
+              and
+            </span>
+            <span
+              style={{
+                fontFamily: "var(--font-rick)",
+                fontSize: "2rem",
+                letterSpacing: "0.06em",
+                background: "var(--azul)",
+                WebkitTextStroke: "0.4px var(--verde-claro-texto)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                whiteSpace: "nowrap",
+              }}
+            >
+              MortY
             </span>
           </Link>
 
