@@ -6,7 +6,7 @@ import {
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcryptjs";
 import db from "../database/database";
-import { ok } from "assert/strict";
+import { type UsuarioDB } from "../types";
 
 @Injectable()
 export class AuthService {
@@ -33,7 +33,7 @@ export class AuthService {
   async login(email: string, password: string) {
     const usuario = db
       .prepare("SELECT * FROM users WHERE email = ?")
-      .get(email) as any;
+      .get(email) as UsuarioDB | undefined;
     if (!usuario) throw new UnauthorizedException("Email ou senha incorretos");
 
     const credenciaisConferem = await bcrypt.compare(
