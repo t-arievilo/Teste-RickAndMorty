@@ -5,7 +5,7 @@ import { getMeusPersonagens } from "../api/backendLocal";
 import { useAuth } from "../contexts/AuthContext";
 import { type SavedCharacter } from "../types";
 import CardPersonagem from "../components/CardPersonagem";
-import RickAndMortyIcone from "../../public/assets/rickAndMortyIcone.png";
+import RickAndMortyIcone from "../assets/rickAndMortyIcone.png";
 
 interface Estatisticas {
   totalPersonagens: number;

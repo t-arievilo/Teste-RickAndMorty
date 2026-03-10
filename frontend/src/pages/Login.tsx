@@ -3,6 +3,12 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { cadastrar, entrar } from "../api/backendLocal";
 
+interface LocationState {
+  de?: {
+    pathname: string;
+  };
+}
+
 export default function Login() {
   const [modoCadastro, setModoCadastro] = useState(false);
   const [nome, setNome] = useState("");
@@ -14,9 +20,8 @@ export default function Login() {
   const { logar } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-
-  // volta pra pagina de onde veio depois do login
-  const destino = (location.state as any)?.de?.pathname || "/";
+  const state = location.state as LocationState;
+  const destino = state?.de?.pathname || "/";
 
   async function handleSubmit() {
     setErro("");
@@ -50,9 +55,11 @@ export default function Login() {
         logar(data);
       }
       navigate(destino, { replace: true });
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const axiosError = err as { response?: { data?: { message?: string } } };
       setErro(
-        err.response?.data?.message || "Algo deu errado, tente novamente",
+        axiosError.response?.data?.message ||
+          "Algo deu errado, tente novamente",
       );
     } finally {
       setCarregando(false);

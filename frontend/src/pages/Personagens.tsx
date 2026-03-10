@@ -3,15 +3,18 @@ import { useSearchParams } from "react-router-dom";
 import { getPersonagens } from "../api/rickAndMortyApi";
 import { type RickAndMortyCharacter } from "../types";
 import CardPersonagem from "../components/CardPersonagem";
-import RickAndMortyRateLimit from "../../public/assets/RickAndMortyRateLimit.png";
+import RickAndMortyRateLimit from "../assets/RickAndMortyRateLimit.png";
 
 type ErroTipo = "nao_encontrado" | "rate_limit" | null;
+
+interface SearchParamsObj {
+  page: string;
+  name?: string;
+}
 
 export default function Personagens() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // pagina e busca ficam na URL: /personagens?page=35&name=rick
-  // assim quando o usuario clica em voltar, o browser restaura a URL e o estado volta
   const pagina = Number(searchParams.get("page")) || 1;
   const busca = searchParams.get("name") || "";
 
@@ -29,11 +32,11 @@ export default function Personagens() {
         const data = await getPersonagens(pagina, busca);
         setPersonagens(data.results);
         setTotalPaginas(data.info.pages);
-      } catch (err: any) {
+      } catch (err: unknown) {
         setPersonagens([]);
-        setErro(
-          err?.response?.status === 429 ? "rate_limit" : "nao_encontrado",
-        );
+        const status = (err as { response?: { status?: number } })?.response
+          ?.status;
+        setErro(status === 429 ? "rate_limit" : "nao_encontrado");
       } finally {
         setCarregando(false);
       }
@@ -43,16 +46,15 @@ export default function Personagens() {
   }, [pagina, busca]);
 
   function irParaPagina(p: number) {
-    const params: any = { page: String(p) };
+    const params: SearchParamsObj = { page: String(p) };
     if (busca) params.name = busca;
-    setSearchParams(params);
+    setSearchParams(params as unknown as URLSearchParams);
   }
 
   function pesquisar() {
-    // ao pesquisar volta para pagina 1
-    const params: any = { page: "1" };
+    const params: SearchParamsObj = { page: "1" };
     if (inputBusca) params.name = inputBusca;
-    setSearchParams(params);
+    setSearchParams(params as unknown as URLSearchParams);
   }
 
   function limparBusca() {
@@ -68,10 +70,10 @@ export default function Personagens() {
         setPersonagens(data.results);
         setTotalPaginas(data.info.pages);
       })
-      .catch((err: any) => {
-        setErro(
-          err?.response?.status === 429 ? "rate_limit" : "nao_encontrado",
-        );
+      .catch((err: unknown) => {
+        const status = (err as { response?: { status?: number } })?.response
+          ?.status;
+        setErro(status === 429 ? "rate_limit" : "nao_encontrado");
       })
       .finally(() => setCarregando(false));
   }

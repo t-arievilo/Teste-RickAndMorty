@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getMeusPersonagens, deletarPersonagem } from "../api/backendLocal";
 import { type SavedCharacter } from "../types";
 import CardPersonagem from "../components/CardPersonagem";
-import RickAndMortyIcone from "../../public/assets/rickAndMortyIcone.png";
+import RickAndMortyIcone from "../assets/rickAndMortyIcone.png";
 
 export default function MeusPersonagens() {
   const [personagens, setPersonagens] = useState<SavedCharacter[]>([]);
