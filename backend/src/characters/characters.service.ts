@@ -4,6 +4,7 @@ import {
   ConflictException,
 } from "@nestjs/common";
 import db from "../database/database";
+import { type CreateCharacterDto, type UpdateCharacterDto } from "../types";
 
 @Injectable()
 export class CharactersService {
@@ -24,7 +25,7 @@ export class CharactersService {
     return personagemPorId;
   }
 
-  create(dados: any, userId: number) {
+  create(dados: CreateCharacterDto, userId: number) {
     const personagemJaSalvo = db
       .prepare(
         "SELECT id FROM characters WHERE original_character_id = ? AND user_id = ?",
@@ -56,7 +57,7 @@ export class CharactersService {
       .get(criaPersonagem.lastInsertRowid);
   }
 
-  update(id: number, dados: any, userId: number) {
+  update(id: number, dados: UpdateCharacterDto, userId: number) {
     this.getOne(id, userId);
     db.prepare(
       `
