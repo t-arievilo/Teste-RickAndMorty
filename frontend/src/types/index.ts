@@ -1,4 +1,5 @@
-// tipos da API do Rick and Morty
+// ─── Rick and Morty API ───────────────────────────────────────────────────────
+
 export interface RickAndMortyCharacter {
   id: number;
   name: string;
@@ -20,7 +21,15 @@ export interface RickAndMortyApiResponse {
   results: RickAndMortyCharacter[];
 }
 
-// personagem salvo no nosso banco
+/** Parâmetros aceitos pela rota GET /character da API */
+export interface CharacterParams {
+  page: number;
+  name?: string;
+}
+
+// ─── Banco local ──────────────────────────────────────────────────────────────
+
+/** Personagem salvo no banco SQLite do usuário */
 export interface SavedCharacter {
   id: number;
   original_character_id: number;
@@ -36,14 +45,7 @@ export interface SavedCharacter {
   updated_at: string;
 }
 
-// usuario logado
-export interface AuthUser {
-  token: string;
-  name: string;
-  email: string;
-}
-
-//cria pernonagem salvo no banco
+/** Payload para criar um personagem no banco */
 export interface CreateCharacterDto {
   original_character_id: number;
   name: string;
@@ -55,5 +57,57 @@ export interface CreateCharacterDto {
   status: string;
 }
 
-//edita pernagem salvo no banco
+/** Payload para editar um personagem (todos os campos opcionais) */
 export type UpdateCharacterDto = Partial<CreateCharacterDto>;
+
+/** Campos editáveis na tela de detalhe */
+export interface DadosEdicao {
+  name: string;
+  species: string;
+  gender: string;
+  origin: string;
+  location: string;
+  status: string;
+}
+
+// ─── Autenticação ─────────────────────────────────────────────────────────────
+
+/** Usuário logado (retornado pelo backend no login/register) */
+export interface AuthUser {
+  token: string;
+  name: string;
+  email: string;
+}
+
+/** Shape do contexto de autenticação */
+export interface AuthContextType {
+  usuario: AuthUser | null;
+  logar: (user: AuthUser) => void;
+  deslogar: () => void;
+  estaLogado: boolean;
+}
+
+// ─── UI / páginas ─────────────────────────────────────────────────────────────
+
+/** Estatísticas retornadas por GET /rickmorty/stats */
+export interface Estatisticas {
+  totalPersonagens: number;
+  totalEpisodios: number;
+  totalLocais: number;
+}
+
+/** State injetado pelo React Router ao redirecionar para /login */
+export interface LocationState {
+  de?: {
+    pathname: string;
+  };
+}
+
+/** Tipos de erro na página de listagem de personagens */
+export type ErroTipo = "nao_encontrado" | "rate_limit" | null;
+
+/** Parâmetros de URL usados na página de listagem (useSearchParams) */
+export interface SearchParamsObj {
+  page: string;
+  name?: string;
+}

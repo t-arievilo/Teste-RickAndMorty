@@ -2,12 +2,7 @@ import { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { cadastrar, entrar } from "../api/backendLocal";
-
-interface LocationState {
-  de?: {
-    pathname: string;
-  };
-}
+import { type LocationState } from "../types";
 
 export default function Login() {
   const [modoCadastro, setModoCadastro] = useState(false);

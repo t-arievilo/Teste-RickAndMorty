@@ -1,12 +1,5 @@
 import { createContext, useContext } from "react";
-import { type AuthUser } from "../types";
-
-export interface AuthContextType {
-  usuario: AuthUser | null;
-  logar: (user: AuthUser) => void;
-  deslogar: () => void;
-  estaLogado: boolean;
-}
+import { type AuthContextType } from "../types";
 
 export const AuthContext = createContext<AuthContextType | undefined>(
   undefined,

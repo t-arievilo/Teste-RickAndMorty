@@ -1,11 +1,7 @@
 import axios from "axios";
+import { type CharacterParams } from "../types";
 
 const api = axios.create({ baseURL: "http://localhost:3001/api/rickmorty" });
-
-type CharacterParams = {
-  page: number;
-  name?: string;
-};
 
 export async function getPersonagens(pagina: number, nome: string) {
   const params: CharacterParams = { page: pagina };

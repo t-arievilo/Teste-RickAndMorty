@@ -9,16 +9,11 @@ import {
   deletarPersonagem,
 } from "../api/backendLocal";
 import { useAuth } from "../contexts/AuthContext";
-import { type RickAndMortyCharacter, type SavedCharacter } from "../types";
-
-interface DadosEdicao {
-  name: string;
-  species: string;
-  gender: string;
-  origin: string;
-  location: string;
-  status: string;
-}
+import {
+  type RickAndMortyCharacter,
+  type SavedCharacter,
+  type DadosEdicao,
+} from "../types";
 
 export default function DetalhePersonagem() {
   const { id } = useParams();

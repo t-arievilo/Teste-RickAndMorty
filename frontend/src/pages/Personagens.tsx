@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getPersonagens } from "../api/rickAndMortyApi";
-import { type RickAndMortyCharacter } from "../types";
+import {
+  type RickAndMortyCharacter,
+  type ErroTipo,
+  type SearchParamsObj,
+} from "../types";
 import CardPersonagem from "../components/CardPersonagem";
 import RickAndMortyRateLimit from "../assets/RickAndMortyRateLimit.png";
-
-type ErroTipo = "nao_encontrado" | "rate_limit" | null;
-
-interface SearchParamsObj {
-  page: string;
-  name?: string;
-}
 
 export default function Personagens() {
   const [searchParams, setSearchParams] = useSearchParams();

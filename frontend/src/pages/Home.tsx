@@ -3,15 +3,10 @@ import { Link } from "react-router-dom";
 import { getEstatisticas } from "../api/rickAndMortyApi";
 import { getMeusPersonagens } from "../api/backendLocal";
 import { useAuth } from "../contexts/AuthContext";
-import { type SavedCharacter } from "../types";
+import { type SavedCharacter, type Estatisticas } from "../types";
 import CardPersonagem from "../components/CardPersonagem";
 import RickAndMortyIcone from "../assets/rickAndMortyIcone.png";
 
-interface Estatisticas {
-  totalPersonagens: number;
-  totalEpisodios: number;
-  totalLocais: number;
-}
 export default function Home() {
   const { estaLogado, usuario } = useAuth();
   const [stats, setStats] = useState<Estatisticas | null>(null);
